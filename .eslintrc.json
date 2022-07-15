@@ -13,6 +13,8 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "semi": "off",
-    "quotes": "off"
+    "quotes": "off",
+    "comma-dangle": "off",
+    "space-before-function-paren": "off"
   }
 }
