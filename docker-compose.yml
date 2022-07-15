@@ -1,0 +1,40 @@
+version: '3.2'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "microthought"
+      MYSQL_USER: "microthought"
+      MYSQL_PASSWORD: "microthought"
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    volumes:
+      - db:/var/lib/mysql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 4000:4000
+    links:
+      - db
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/app
+    depends_on:
+      - db
+
+volumes:
+  db:
