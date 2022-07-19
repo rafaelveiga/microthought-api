@@ -5,3 +5,9 @@ export const getAllMicros = async () => {
 
   return micros.docs.map((doc) => doc.data());
 };
+
+export const getSingleMicro = async (microId: number) => {
+  const micro = await db.collection("micros").doc(microId.toString()).get();
+
+  return micro.data();
+};

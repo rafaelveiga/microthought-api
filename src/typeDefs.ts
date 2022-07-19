@@ -10,6 +10,7 @@ const typeDefs = gql`
 
   type Query {
     micros: [Micro]
+    micro(id: ID!): Micro
   }
 `;
 
