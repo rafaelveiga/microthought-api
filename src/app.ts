@@ -1,6 +1,10 @@
 import { ApolloServer } from "apollo-server";
 import typeDefs from "./typeDefs";
-import { getAllMicros, getSingleMicro } from "./modules/micros/resolver";
+import {
+  addMicro,
+  getAllMicros,
+  getSingleMicro,
+} from "./modules/micros/resolver";
 
 class App {
   public async start() {
@@ -8,6 +12,9 @@ class App {
       Query: {
         micros: () => getAllMicros(),
         micro: (parent, args) => getSingleMicro(args.id),
+      },
+      Mutation: {
+        addMicro,
       },
     };
 

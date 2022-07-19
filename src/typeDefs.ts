@@ -12,6 +12,10 @@ const typeDefs = gql`
     micros: [Micro]
     micro(id: ID!): Micro
   }
+
+  type Mutation {
+    addMicro(title: String, content: String, date: String): Micro
+  }
 `;
 
 export default typeDefs;
