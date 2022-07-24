@@ -3,7 +3,12 @@ import db from "src/firestore";
 export const getAllMicros = async () => {
   const micros = await db.collection("micros").get();
 
-  return micros.docs.map((doc) => doc.data());
+  const data = micros.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  return data;
 };
 
 export const getSingleMicro = async (microId: string) => {
